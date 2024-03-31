@@ -1,5 +1,4 @@
 # Simple-Youtube-DL
-A simple mimalistic and opensource youtube downloader written in python because downloading from youtube should be easy
 A simple mimalistic and open-source youtube downloader written in python because downloading from youtube should be easy
 ## How do i install
 ### Easy just follow the instructions below
@@ -9,6 +8,10 @@ git clone https://github.com/TheOOF10/Simple-Youtube-DL.git
 cd Simple-Youtube-DL
 ```
 ### 2. Install the requirements
+```
+python3 -m pip install -r requirements.txt
+```
+### or try this in case the command above doesn't work
 ```
 python3 -m pip install -r requirements.txt
 ```
