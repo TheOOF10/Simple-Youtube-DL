@@ -1,3 +1,2 @@
 # Simple-Youtube-DL
-A simple and mimalistic youtube downloader written in python because downloading from youtube should be easy
-#How do i install
+A simple mimalistic and opensource youtube downloader written in python because downloading from youtube should be easy
