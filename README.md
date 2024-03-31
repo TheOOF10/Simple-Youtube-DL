@@ -13,11 +13,11 @@ python3 -m pip install -r requirements.txt
 ```
 ### or try this in case the command above doesn't work
 ```
-python3 -m pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 ### 3. And run the file!
 ```
-python Simple-YT-DL.py [youtube url here]
+python3 Simple-YT-DL.py [youtube url here]
 ```
 ### if python3 doesn't work use python
 ### If you are still confused type for a tutorial
