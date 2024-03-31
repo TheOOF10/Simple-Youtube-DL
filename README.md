@@ -19,6 +19,7 @@ python3 -m pip install -r requirements.txt
 ```
 python3 Simple-YT-DL.py [youtube url here]
 ```
+### if python3 doesn't work use python
 ### If you are still confused type for a tutorial
 ```
 python3 Simple-YT-DL.yp --help
