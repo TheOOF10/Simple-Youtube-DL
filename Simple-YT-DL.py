@@ -42,10 +42,10 @@ if first == "--help":
     print("Then it will ask you in which resolution you want the video to be (only avaible when on video mode)")
     print("There is nothing involving arguments and stuff just the instructions above it's called Simple Youtube DL for a reason")
     print("Extra Inforamtion")
-    print("60fps Downloading is only avaible on 1080p+ but even then might not be avaible")
+    print("60fps Downloading is only avaible on 1080p+ but even then it might not be available")
 elif firstl == "https://" or firstl == "http://w" or firstl == "http://y" or firstl == "www.yout" or firstl == "youtube.": #check for url
     url = YouTube(first)
-    if name == "0":
+    if name == 0:
         name = url.title + ".mp4"
     print("Do you want to download either video or audio")
     c = input() # input lol
