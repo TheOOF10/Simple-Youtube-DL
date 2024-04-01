@@ -22,5 +22,5 @@ python3 Simple-YT-DL.py [youtube url here]
 ### if python3 doesn't work use python
 ### If you are still confused type for a tutorial or check the wiki
 ```
-python3 Simple-YT-DL.yp --help
+python3 Simple-YT-DL.py --help
 ```
