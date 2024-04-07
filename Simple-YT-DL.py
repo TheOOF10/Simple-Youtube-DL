@@ -138,7 +138,10 @@ elif firstl == "https://" or firstl == "http://w" or firstl == "http://y" or fir
         stream.download()
         print("Finalazing...")
         filename = url.title + ".webm"
-        finalname = url.title + ".mp3"
+        if name == 0:
+            finalname = url.title + ".mp3"
+        else:
+            finalname = name
         clip = AudioFileClip(filename)
         clip.write_audiofile(finalname)
         os.remove(filename)
