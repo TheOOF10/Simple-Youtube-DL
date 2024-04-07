@@ -5,7 +5,6 @@ import os
 from moviepy.editor import VideoFileClip
 from moviepy.editor import AudioFileClip
 arguments = sys.argv
-script_name = arguments[0]
 try:
     first = arguments[1]
 except IndexError:
@@ -31,7 +30,11 @@ if not os.path.exists(conffile):
 
 with open(conffile, "r") as f:
     fpsDefault = f.read()[:15]
-
+forbiten_chars = [":", "/", "\\", "?", "*", "|", "<", ">", '"', "'"]
+def remove_chars(input_string):
+    for char in forbiten_chars:
+        input_string = input_string.replace(char, '')
+    return input_string
 firstl = first[:8]
 
 if first == "--help":
@@ -45,11 +48,11 @@ if first == "--help":
     print("60fps Downloading is only avaible on 1080p+ but even then it might not be available")
 elif firstl == "https://" or firstl == "http://w" or firstl == "http://y" or firstl == "www.yout" or firstl == "youtube.": #check for url
     url = YouTube(first)
-    if name == 0:
-        name = url.title + ".mp4"
     print("Do you want to download either video or audio")
     c = input() # input lol
     if c == "video" or c == "v": #Downloads Video
+        if name == 0:
+            name = url.title + ".mp4"
         print("You selected video mode")
         print("What resolution do you want to download the video in? (type number)")
         print("1. 4K")
@@ -59,6 +62,8 @@ elif firstl == "https://" or firstl == "http://w" or firstl == "http://y" or fir
         print("5. 360p")
         res = input()
         text = "Downloading " + url.title + "..."
+        print(text)
+        name = remove_chars(name)
         if int(res) == 1: # Download Video files
             if fpsDefault == "60fpsDefault: 1":
                 stream = url.streams.get_by_itag(337)
@@ -135,14 +140,19 @@ elif firstl == "https://" or firstl == "http://w" or firstl == "http://y" or fir
         text = "Downloading " + url.title + "..."
         print(text)
         stream = url.streams.get_by_itag(251)
-        stream.download()
+        fname = url.title + ".webm"
+        fname = remove_chars(fname)
+        stream.download(filename=fname)
         print("Finalazing...")
         filename = url.title + ".webm"
         if name == 0:
             finalname = url.title + ".mp3"
         else:
             finalname = name
+        finalname = remove_chars(finalname)
+        filename = remove_chars(filename)
         clip = AudioFileClip(filename)
+        print(finalname)
         clip.write_audiofile(finalname)
         os.remove(filename)
         print("Done")
