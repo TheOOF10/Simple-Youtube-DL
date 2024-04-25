@@ -5,6 +5,7 @@ import os
 from moviepy.editor import VideoFileClip
 from moviepy.editor import AudioFileClip
 arguments = sys.argv
+nomerge = 0
 try:
     first = arguments[1]
 except IndexError:
@@ -14,6 +15,10 @@ try:
     name = arguments[2]
 except IndexError:
     name = 0
+try:
+    lol = arguments[3]
+except IndexError:
+    lol = 0
 
 confline1 = 0
 conffile = "conf.txt"
@@ -36,16 +41,19 @@ def remove_chars(input_string):
         input_string = input_string.replace(char, '')
     return input_string
 firstl = first[:8]
+print("Done Loading!")
 
 if first == "--help":
     print("Tutorial Downloading a video")
-    print("type the command you just entered but instead of --help insert the url")
-    print("Also after you add the url you can add the filename you want the video file to be don't forget the extension")
+    print("Type the command you just entered but instead of --help insert the url")
+    print("Also after you add the url you can add the filename you want the video file to be (don't forget the extension)")
     print("The downloader will ask you if you want an audio file or a video file")
     print("Then it will ask you in which resolution you want the video to be (only avaible when on video mode)")
     print("There is nothing involving arguments and stuff just the instructions above it's called Simple Youtube DL for a reason")
     print("Extra Inforamtion")
     print("60fps Downloading is only avaible on 1080p+ but even then it might not be available")
+    print("Extra Arguments")
+    print("--nomerge | When Downloading 1080p+ youtube only offers both the video and the audio on seperate streams so the script downloads both files and merges them if you don't want to merge the files for whatever reason use that")
 elif firstl == "https://" or firstl == "http://w" or firstl == "http://y" or firstl == "www.yout" or firstl == "youtube.": #check for url
     url = YouTube(first)
     print("Do you want to download either video or audio")
@@ -63,6 +71,8 @@ elif firstl == "https://" or firstl == "http://w" or firstl == "http://y" or fir
         res = input()
         text = "Downloading " + url.title + "..."
         print(text)
+        if name == "--nomerge":
+            nomerge = 1
         name = remove_chars(name)
         if int(res) == 1: # Download Video files
             if fpsDefault == "60fpsDefault: 1":
@@ -130,11 +140,16 @@ elif firstl == "https://" or firstl == "http://w" or firstl == "http://y" or fir
         else:
             print("ERROR wrong input")
         if int(res) < 3 or int(res) == 3: #Merges video and audio file if res higher than 1080p (because i can't download audio and video all once in a single file because youtube uses a diffrent streaming method in these resolutions)
-            print("Finalazing...")
-            video_clip = VideoFileClip("tmp.mp4")
-            audio_clip = AudioFileClip("tmpaudio.webm")
-            video_clip = video_clip.set_audio(audio_clip)
-            video_clip.write_videofile(name)
+            if lol == "--nomerge" or nomerge == 1: #Final stuff when using --nomerge
+                name = remove_chars(url.title)
+                os.rename("tmp.mp4", name + ".mp4")
+                os.rename("tmpaudio.webm", name + ".webm")
+            if lol == "--nomerge" or nomerge == 0:
+                print("Finalazing...")
+                video_clip = VideoFileClip("tmp.mp4")
+                audio_clip = AudioFileClip("tmpaudio.webm")
+                video_clip = video_clip.set_audio(audio_clip)
+                video_clip.write_videofile(name)
     elif c == "audio" or c == "a": # Downloads audio
         print("You selected audio mode")
         text = "Downloading " + url.title + "..."
