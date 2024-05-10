@@ -1,5 +1,5 @@
 # Simple-Youtube-DL
-A simple mimalistic and open-source youtube downloader written in python because downloading from youtube should be easy
+A simple minimalistic and open-source youtube downloader written in python because downloading from youtube should be easy
 # Features
 * Downloads at resolutions like 360p 720p 1080p 1440p and 4K
 * Can also download as mp3
