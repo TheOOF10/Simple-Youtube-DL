@@ -9,7 +9,7 @@ nomerge = 0
 try:
     first = arguments[1]
 except IndexError:
-    print("ERROR: Argument not found type --help for help")
+    print("ERROR: Argument not or invalid URL found type --help for help")
     sys.exit(1)
 try:
     name = arguments[2]
@@ -54,7 +54,7 @@ if first == "--help":
     print("60fps Downloading is only avaible on 1080p+ but even then it might not be available")
     print("Extra Arguments")
     print("--nomerge | When Downloading 1080p+ youtube only offers both the video and the audio on seperate streams so the script downloads both files and merges them if you don't want to merge the files for whatever reason use that")
-elif firstl == "https://" or firstl == "http://w" or firstl == "http://y" or firstl == "www.yout" or firstl == "youtube.": #check for url
+elif firstl == "https://" or firstl == "http://w" or firstl == "http://y" or firstl == "www.yout" or firstl == "youtube." or firstl == "music.yo" or firstl == "http://m" or firstl == "www.musi": #check for url
     url = YouTube(first)
     print("Do you want to download either video or audio")
     c = input() # input lol
