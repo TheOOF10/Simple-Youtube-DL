@@ -1,3 +1,4 @@
+#TODO fix bug where in windows it doesn't download
 print("Loading...")
 import os
 import sys
@@ -41,7 +42,11 @@ for item in arguments:
 from pytube import YouTube
 from moviepy.editor import VideoFileClip
 from moviepy.editor import AudioFileClip
-url = YouTube(urltmp)
+if not urltmp == 0:
+    url = YouTube(urltmp)
+else:
+    print("ERROR No or invalid URL please enter a valid Youtube or Youtube Music URL")
+    exit()
 
 confline1 = 0   
 conffile = "conf.txt"
