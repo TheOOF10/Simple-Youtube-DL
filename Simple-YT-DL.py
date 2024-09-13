@@ -6,7 +6,9 @@ arguments = sys.argv
 nomerge = 0
 url = 0
 name = 0
-idkwhattonamethis = 0
+c = 0
+res = 0
+idkwhattonamethis = 0 #inefficient way to get the next argument when i need it for another argument
 urltmp = 0
 for item in arguments:
     if item == "--help":
@@ -38,6 +40,22 @@ for item in arguments:
         nomerge = 1
     if idkwhattonamethis == 2:
         idkwhattonamethis = 1
+    if item == "--res":
+        idkwhattonamethis = 4
+    if idkwhattonamethis == 3:
+        if item == 1 or item.upper() == "4K":
+            res = 1
+        if item == 2 or item.upper() == "1440P":
+            res = 2
+        if item == 3 or item.upper() == "1080P":
+            res = 3
+        if item == 4 or item.upper() == "720P":
+            res = 4
+        if item == 5 or item.upper() == "360P":
+            res = 5
+        idkwhattonamethis = 0
+    if idkwhattonamethis == 4:
+        idkwhattonamethis = 3
 
 from pytube import YouTube
 from moviepy.editor import VideoFileClip
@@ -69,20 +87,21 @@ def remove_chars(input_string):
         input_string = input_string.replace(char, '')
     return input_string
 print("Done Loading!")
-
-print("Do you want to download either video or audio")
-c = input() # input lol
-if c == "video" or c == "v": #Downloads Video
+if res == 0:
+    print("Do you want to download either video or audio")
+    c = input() # input lol
+if c == "video" or c == "v" or res > 0: #Downloads Video
     if name == 0:
         name = url.title + ".mp4"
-    print("You selected video mode")
-    print("What resolution do you want to download the video in? (type number)")
-    print("1. 4K")
-    print("2. 1440p")
-    print("3. 1080p")
-    print("4. 720p")
-    print("5. 360p")
-    res = input()
+    if res == 0:
+        print("You selected video mode")
+        print("What resolution do you want to download the video in? (type number)")
+        print("1. 4K")
+        print("2. 1440p")
+        print("3. 1080p")
+        print("4. 720p")
+        print("5. 360p")
+        res = input()
     text = "Downloading " + url.title + "..."
     print(text)
     if name == "--nomerge":
